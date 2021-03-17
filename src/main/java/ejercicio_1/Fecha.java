@@ -20,10 +20,6 @@ public class Fecha {
         );
     }
 
-    private LocalDateTime getDateTime() {
-        return date;
-    }
-
     public String getFechaSerializada() {
         return serializarFecha(date);
     }
@@ -34,7 +30,7 @@ public class Fecha {
 
     public static boolean hoyEstaEntre(Fecha inicio, Fecha fin) {
         LocalDateTime ahora = LocalDateTime.now();
-        return ahora.isAfter(inicio.getDateTime()) && ahora.isBefore(fin.getDateTime());
+        return ahora.isAfter(inicio.date) && ahora.isBefore(fin.date);
     }
 
 }

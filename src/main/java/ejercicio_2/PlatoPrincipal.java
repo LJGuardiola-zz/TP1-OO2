@@ -2,7 +2,7 @@ package ejercicio_2;
 
 import java.util.Objects;
 
-public class PlatoPrincipal {
+public class PlatoPrincipal implements Producto {
 
     private final String nombre;
     private final double precio;
@@ -16,12 +16,14 @@ public class PlatoPrincipal {
         this.precio = precio;
     }
 
-    public String getNombre() {
-        return nombre;
-    }
-
+    @Override
     public double getPrecio() {
         return precio;
+    }
+
+    @Override
+    public double getDescuento(MedioDePago medioDePago) {
+        return medioDePago.getDescuentoPlatos();
     }
 
     @Override

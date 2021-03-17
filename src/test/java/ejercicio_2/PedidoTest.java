@@ -15,9 +15,9 @@ public class PedidoTest {
 
         pedido = new Pedido();
 
-        pedido.agregarPlato(new PlatoPrincipal("Sandwich de vacío", 450), 3);
-        pedido.agregarPlato(new PlatoPrincipal("Milanesa de carne de vaca", 300), 1);
-        pedido.agregarBebida(new Bebida("Coca cola", 150), 4);
+        pedido.agregar(new PlatoPrincipal("Sandwich de vacío", 450), 3);
+        pedido.agregar(new PlatoPrincipal("Milanesa de carne de vaca", 300), 1);
+        pedido.agregar(new Bebida("Coca cola", 150), 4);
 
         double totalPlatos = 450 * 3 + 300;
         double totalBebidas = 150 * 4;

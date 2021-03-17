@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class ConcursoTest {
 
-    private final Participante participante = new Participante("39741258", "Lucas", "Guardiola");
+    private final Participante participante = new Participante("39741258");
 
     @Test
     void inscripcion_de_un_participante_en_fecha() {

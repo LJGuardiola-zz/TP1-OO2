@@ -5,34 +5,29 @@ import java.util.Map;
 
 public class Pedido {
 
-    private final HashMap<PlatoPrincipal, Integer> platos = new HashMap<>();
-    private final HashMap<Bebida, Integer> bebidas = new HashMap<>();
+    private final HashMap<Producto, Integer> productos = new HashMap<>();
 
     public Pedido() {}
 
-    public void agregarPlato(PlatoPrincipal plato, int cantidad) {
-        if (platos.containsKey(plato))
-            platos.replace(plato, platos.get(plato) + cantidad);
+    public void agregar(Producto producto, int cantidad) {
+        if (productos.containsKey(producto))
+            productos.replace(producto, productos.get(producto) + cantidad);
         else
-            platos.put(plato, cantidad);
+            productos.put(producto, cantidad);
     }
 
-    public void agregarBebida(Bebida bebida, int cantidad) {
-        if (bebidas.containsKey(bebida))
-            bebidas.replace(bebida, bebidas.get(bebida) + cantidad);
-        else
-            bebidas.put(bebida, cantidad);
+    private double calcularTotal(MedioDePago medioDePago) {
+        double total = 0;
+        for (Map.Entry<Producto, Integer> item : productos.entrySet()) {
+            Producto producto = item.getKey();
+            int cantidad = item.getValue();
+            total += cantidad * producto.getPrecio() * (1 - producto.getDescuento(medioDePago));
+        }
+        return total;
     }
 
     public double pagar(MedioDePago medioDePago, Propina propina) {
-        double total = 0;
-        // formula aplicada: cantidad * precio * descuento aplicado.
-        for (Map.Entry<PlatoPrincipal, Integer> item : platos.entrySet())
-            total += item.getValue() * item.getKey().getPrecio() * (1 - medioDePago.getDescuentoPlatos());
-        for (Map.Entry<Bebida, Integer> item : bebidas.entrySet())
-            total += item.getValue() * item.getKey().getPrecio() * (1 - medioDePago.getDescuentoBebidas());
-        // Sumar propina
-        return total * (1 + propina.getPropina());
+        return calcularTotal(medioDePago) * (1 + propina.getPropina());
     }
 
 }

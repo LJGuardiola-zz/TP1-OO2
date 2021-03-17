@@ -60,7 +60,7 @@ public class Concurso {
         return participantes.get(participante);
     }
 
-    public void verificarInscripcion(Participante participante) {
+    private void verificarInscripcion(Participante participante) {
         if (!participantes.containsKey(participante))
             throw new RuntimeException(
                     "El participante NO se encuentra inscripto en el concurso"
