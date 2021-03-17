@@ -1,3 +1,5 @@
+package ejercicio_1;
+
 import java.util.Objects;
 
 public class Participante {
