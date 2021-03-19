@@ -29,14 +29,14 @@ public class PedidoTest {
     void pagar_con_visa() {
         assertEquals(
                 pedido.pagar(Tarjeta.VISA, PROPINA_DEFAULT),
-                obtenerTotalFinal(totalPlatos, totalBebidas, Tarjeta.VISA));
+                obtenerTotalFinal(Tarjeta.VISA));
     }
 
     @Test
     void pagar_con_mastercard() {
         assertEquals(
                 pedido.pagar(Tarjeta.MASTERCARD, PROPINA_DEFAULT),
-                obtenerTotalFinal(totalPlatos, totalBebidas, Tarjeta.MASTERCARD)
+                obtenerTotalFinal(Tarjeta.MASTERCARD)
         );
     }
 
@@ -44,7 +44,7 @@ public class PedidoTest {
     void pagar_con_comarca_plus() {
         assertEquals(
                 pedido.pagar(Tarjeta.COMARCA_PLUS, PROPINA_DEFAULT),
-                obtenerTotalFinal(totalPlatos, totalBebidas, Tarjeta.COMARCA_PLUS)
+                obtenerTotalFinal(Tarjeta.COMARCA_PLUS)
         );
     }
 
@@ -52,11 +52,11 @@ public class PedidoTest {
     void pagar_con_viedma() {
         assertEquals(
                 pedido.pagar(Tarjeta.VIEDMA, PROPINA_DEFAULT),
-                obtenerTotalFinal(totalPlatos, totalBebidas, Tarjeta.VIEDMA)
+                obtenerTotalFinal(Tarjeta.VIEDMA)
         );
     }
 
-    private double obtenerTotalFinal(double totalPlatos, double totalBebidas, MedioDePago medioDePago) {
+    private double obtenerTotalFinal(MedioDePago medioDePago) {
         return PROPINA_DEFAULT.aplicarPropina(
                 totalPlatos * (1 - medioDePago.getDescuentoPlatos()) +
                      totalBebidas * (1 - medioDePago.getDescuentoBebidas())
