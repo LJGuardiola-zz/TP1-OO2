@@ -56,10 +56,10 @@ public class PedidoTest {
         );
     }
 
-    private double obtenerTotalFinal(double totalPlatos, double totalBebidas, Tarjeta tarjeta) {
+    private double obtenerTotalFinal(double totalPlatos, double totalBebidas, MedioDePago medioDePago) {
         return PROPINA_DEFAULT.aplicarPropina(
-                totalPlatos * (1 - tarjeta.getDescuentoPlatos()) +
-                     totalBebidas * (1 - tarjeta.getDescuentoBebidas())
+                totalPlatos * (1 - medioDePago.getDescuentoPlatos()) +
+                     totalBebidas * (1 - medioDePago.getDescuentoBebidas())
         );
     }
 
