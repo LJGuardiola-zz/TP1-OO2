@@ -10,8 +10,8 @@ public enum Propina {
         this.propina = propina;
     }
 
-    public double getPropina() {
-        return propina;
+    public double aplicarPropina(double total) {
+        return total * (1 + propina);
     }
 
 }

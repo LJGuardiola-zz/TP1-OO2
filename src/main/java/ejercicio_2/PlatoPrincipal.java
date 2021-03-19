@@ -2,7 +2,7 @@ package ejercicio_2;
 
 import java.util.Objects;
 
-public class PlatoPrincipal implements Producto {
+public class PlatoPrincipal implements Pagable {
 
     private final String nombre;
     private final double precio;
