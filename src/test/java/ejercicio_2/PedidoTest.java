@@ -28,38 +28,38 @@ public class PedidoTest {
     @Test
     void pagar_con_visa() {
         assertEquals(
-                pedido.pagar(MedioDePago.VISA, PROPINA_DEFAULT),
-                obtenerTotalFinal(totalPlatos, totalBebidas, MedioDePago.VISA));
+                pedido.pagar(Tarjeta.VISA, PROPINA_DEFAULT),
+                obtenerTotalFinal(totalPlatos, totalBebidas, Tarjeta.VISA));
     }
 
     @Test
     void pagar_con_mastercard() {
         assertEquals(
-                pedido.pagar(MedioDePago.MASTERCARD, PROPINA_DEFAULT),
-                obtenerTotalFinal(totalPlatos, totalBebidas, MedioDePago.MASTERCARD)
+                pedido.pagar(Tarjeta.MASTERCARD, PROPINA_DEFAULT),
+                obtenerTotalFinal(totalPlatos, totalBebidas, Tarjeta.MASTERCARD)
         );
     }
 
     @Test
     void pagar_con_comarca_plus() {
         assertEquals(
-                pedido.pagar(MedioDePago.COMARCA_PLUS, PROPINA_DEFAULT),
-                obtenerTotalFinal(totalPlatos, totalBebidas, MedioDePago.COMARCA_PLUS)
+                pedido.pagar(Tarjeta.COMARCA_PLUS, PROPINA_DEFAULT),
+                obtenerTotalFinal(totalPlatos, totalBebidas, Tarjeta.COMARCA_PLUS)
         );
     }
 
     @Test
     void pagar_con_viedma() {
         assertEquals(
-                pedido.pagar(MedioDePago.VIEDMA, PROPINA_DEFAULT),
-                obtenerTotalFinal(totalPlatos, totalBebidas, MedioDePago.VIEDMA)
+                pedido.pagar(Tarjeta.VIEDMA, PROPINA_DEFAULT),
+                obtenerTotalFinal(totalPlatos, totalBebidas, Tarjeta.VIEDMA)
         );
     }
 
-    private double obtenerTotalFinal(double totalPlatos, double totalBebidas, MedioDePago medioDePago) {
+    private double obtenerTotalFinal(double totalPlatos, double totalBebidas, Tarjeta tarjeta) {
         return PROPINA_DEFAULT.aplicarPropina(
-                totalPlatos * (1 - medioDePago.getDescuentoPlatos()) +
-                     totalBebidas * (1 - medioDePago.getDescuentoBebidas())
+                totalPlatos * (1 - tarjeta.getDescuentoPlatos()) +
+                     totalBebidas * (1 - tarjeta.getDescuentoBebidas())
         );
     }
 
