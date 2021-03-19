@@ -5,7 +5,11 @@ import java.util.Map;
 
 public class Pedido {
 
-    private final HashMap<Pagable, Integer> productos = new HashMap<>();
+    private final HashMap<Pagable, Integer> productos;
+
+    public Pedido() {
+        productos = new HashMap<>();
+    }
 
     public void agregar(Pagable producto, int cantidad) {
         if (productos.containsKey(producto))
