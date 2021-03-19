@@ -36,8 +36,8 @@ public class Concurso {
         if ( ! estaAbiertaLaInscripcion())
             throw new RuntimeException(
                     "La inscripción no se encuentra abierta." +
-                            " ejercicio_1.Fecha de inicio: " + getFechaDeInicioSerializada() +
-                            " ejercicio_1.Fecha de cierre: " + getFechaDeCierreSerializada()
+                            " Fecha de inicio: " + getFechaDeInicioSerializada() +
+                            " Fecha de cierre: " + getFechaDeCierreSerializada()
             );
         if (estaInscripto(participante))
             throw new RuntimeException("El participante ya se encuentra inscrito.");
