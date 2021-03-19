@@ -5,22 +5,22 @@ import java.util.Map;
 
 public class Pedido {
 
-    private final HashMap<Pagable, Integer> productos;
+    private final HashMap<Pagable, Integer> items;
 
     public Pedido() {
-        productos = new HashMap<>();
+        items = new HashMap<>();
     }
 
     public void agregar(Pagable producto, int cantidad) {
-        if (productos.containsKey(producto))
-            productos.replace(producto, productos.get(producto) + cantidad);
+        if (items.containsKey(producto))
+            items.replace(producto, items.get(producto) + cantidad);
         else
-            productos.put(producto, cantidad);
+            items.put(producto, cantidad);
     }
 
     private double calcularTotal(MedioDePago medioDePago) {
         double total = 0;
-        for (Map.Entry<Pagable, Integer> item : productos.entrySet())
+        for (Map.Entry<Pagable, Integer> item : items.entrySet())
             total += item.getValue() * item.getKey().getPrecioConDescuento(medioDePago);
         return total;
     }
