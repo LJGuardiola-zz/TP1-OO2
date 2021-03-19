@@ -12,7 +12,7 @@ public abstract class Producto implements Pagable {
             throw new IllegalArgumentException("El nombre del producto no debe ser nulo o vacío.");
         this.nombre = nombre;
         if (precio < 0)
-            throw new IllegalArgumentException("El precio del producto no debe ser mayor o igual a 0.");
+            throw new IllegalArgumentException("El precio del producto debe ser mayor o igual a 0.");
         this.precio = precio;
     }
 
