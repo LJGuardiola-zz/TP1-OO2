@@ -95,7 +95,7 @@ class ConcursoTest {
     private Concurso obtenerConcursoConInscripcionCerrada() {
         LocalDateTime hoy = LocalDateTime.now();
         LocalDateTime ayer = hoy.minusDays(1);
-        LocalDateTime antesDeAyer = hoy.plusDays(2);
+        LocalDateTime antesDeAyer = hoy.minusDays(2);
         return new Concurso(
                 new Fecha(antesDeAyer),
                 new Fecha(ayer)
