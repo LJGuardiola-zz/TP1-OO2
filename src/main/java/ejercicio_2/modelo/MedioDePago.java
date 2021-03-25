@@ -1,4 +1,4 @@
-package ejercicio_2;
+package ejercicio_2.modelo;
 
 public interface MedioDePago {
     double getDescuentoPlatos();

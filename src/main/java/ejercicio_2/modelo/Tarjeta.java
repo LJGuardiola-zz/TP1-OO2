@@ -1,4 +1,4 @@
-package ejercicio_2;
+package ejercicio_2.modelo;
 
 public enum Tarjeta implements MedioDePago {
 

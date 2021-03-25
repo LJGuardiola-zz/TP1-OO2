@@ -1,14 +1,16 @@
-package ejercicio_2;
+package ejercicio_2.modelo;
 
+import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
 
 public class Pedido {
 
-    private final HashMap<Pagable, Integer> items;
+    private final HashMap<Pagable, Integer> items = new HashMap<>();
+    private final Registro registro;
 
-    public Pedido() {
-        items = new HashMap<>();
+    public Pedido(Registro registro) {
+        this.registro = registro;
     }
 
     public void agregar(Pagable producto, int cantidad) {
@@ -26,7 +28,9 @@ public class Pedido {
     }
 
     public double pagar(MedioDePago medioDePago, Propina propina) {
-        return propina.aplicarPropina(calcularTotal(medioDePago));
+        double total = propina.aplicarPropina(calcularTotal(medioDePago));
+        registro.registrar(LocalDate.now() + " || " + total);
+        return total;
     }
 
 }
