@@ -8,7 +8,7 @@ public class RegistroEnTest implements Registro {
 
     @Override
     public void registrar(String message) {
-        almacen += message + "\n";
+        almacen += message;
     }
 
     public boolean seRegistro(String message) {

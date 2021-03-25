@@ -72,7 +72,7 @@ public class PedidoTest {
     }
 
     private String getMensajeDeRegistro(Tarjeta tarjeta) {
-        return LocalDate.now() + " || " + obtenerTotalFinal(tarjeta);
+        return LocalDate.now() + " || " + obtenerTotalFinal(tarjeta) + "\n";
     }
 
     private void pagar(MedioDePago medioDePago) {

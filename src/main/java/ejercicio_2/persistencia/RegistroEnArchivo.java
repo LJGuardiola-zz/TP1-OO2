@@ -3,22 +3,19 @@ package ejercicio_2.persistencia;
 import ejercicio_2.modelo.Registro;
 
 import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.nio.file.StandardOpenOption;
 
 public class RegistroEnArchivo implements Registro {
 
-    private final String ruta;
+    private final File file;
 
-    public RegistroEnArchivo(String ruta) {
-        this.ruta = ruta;
+    public RegistroEnArchivo(String path) {
+        file = new File(path);
     }
 
     @Override
     public void registrar(String mensaje) {
-        try {
-            Files.write(Paths.get(ruta), mensaje.getBytes(), StandardOpenOption.APPEND);
+        try (Writer writer = new FileWriter(file, true)) {
+            writer.write(mensaje);
         } catch (IOException e) {
             throw new RuntimeException("No se pudo registrar el mensaje.", e);
         }
