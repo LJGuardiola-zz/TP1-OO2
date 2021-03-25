@@ -29,7 +29,7 @@ public class Pedido {
 
     public double pagar(MedioDePago medioDePago, Propina propina) {
         double total = propina.aplicarPropina(calcularTotal(medioDePago));
-        registro.registrar(LocalDate.now() + " || " + total);
+        registro.registrar(LocalDate.now() + " || " + total + "\n");
         return total;
     }
 
