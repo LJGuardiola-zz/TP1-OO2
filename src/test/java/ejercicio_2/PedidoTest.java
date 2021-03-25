@@ -1,20 +1,26 @@
 package ejercicio_2;
 
+import ejercicio_2.modelo.*;
+import ejercicio_2.persistencia.RegistroEnTest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import java.time.LocalDate;
+
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class PedidoTest {
 
     private Pedido pedido;
+    private RegistroEnTest registro;
     private double totalPlatos, totalBebidas;
     private static final Propina PROPINA_DEFAULT = Propina.ESSA;
 
     @BeforeEach
     void setUp() {
 
-        pedido = new Pedido();
+        registro = new RegistroEnTest();
+        pedido = new Pedido(registro);
 
         pedido.agregar(new PlatoPrincipal("Sandwich de vacío", 450), 3);
         pedido.agregar(new PlatoPrincipal("Milanesa de carne de vaca", 300), 1);
@@ -27,37 +33,50 @@ public class PedidoTest {
 
     @Test
     void pagar_con_visa() {
-        assertEquals(
-                pagar(Tarjeta.VISA),
-                obtenerTotalFinal(Tarjeta.VISA));
+        pagar(Tarjeta.VISA);
+        assertTrue(
+                registro.seRegistro(
+                        getMensajeDeRegistro(Tarjeta.VISA)
+                )
+        );
     }
 
     @Test
     void pagar_con_mastercard() {
-        assertEquals(
-                pagar(Tarjeta.MASTERCARD),
-                obtenerTotalFinal(Tarjeta.MASTERCARD)
+        pagar(Tarjeta.MASTERCARD);
+        assertTrue(
+                registro.seRegistro(
+                        getMensajeDeRegistro(Tarjeta.MASTERCARD)
+                )
         );
     }
 
     @Test
     void pagar_con_comarca_plus() {
-        assertEquals(
-                pagar(Tarjeta.COMARCA_PLUS),
-                obtenerTotalFinal(Tarjeta.COMARCA_PLUS)
+        pagar(Tarjeta.COMARCA_PLUS);
+        assertTrue(
+                registro.seRegistro(
+                        getMensajeDeRegistro(Tarjeta.COMARCA_PLUS)
+                )
         );
     }
 
     @Test
     void pagar_con_viedma() {
-        assertEquals(
-                pagar(Tarjeta.VIEDMA),
-                obtenerTotalFinal(Tarjeta.VIEDMA)
+        pagar(Tarjeta.VIEDMA);
+        assertTrue(
+                registro.seRegistro(
+                        getMensajeDeRegistro(Tarjeta.VIEDMA)
+                )
         );
     }
 
-    private double pagar(MedioDePago medioDePago) {
-        return pedido.pagar(medioDePago, PROPINA_DEFAULT);
+    private String getMensajeDeRegistro(Tarjeta tarjeta) {
+        return LocalDate.now() + " || " + obtenerTotalFinal(tarjeta);
+    }
+
+    private void pagar(MedioDePago medioDePago) {
+        pedido.pagar(medioDePago, PROPINA_DEFAULT);
     }
 
     private double obtenerTotalFinal(MedioDePago medioDePago) {
