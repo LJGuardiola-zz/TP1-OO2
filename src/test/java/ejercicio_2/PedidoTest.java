@@ -35,7 +35,7 @@ public class PedidoTest {
     void pagar_con_visa() {
         pagar(Tarjeta.VISA);
         assertTrue(
-                registro.seRegistro(
+                registro.verificar(
                         getMensajeDeRegistro(Tarjeta.VISA)
                 )
         );
@@ -45,7 +45,7 @@ public class PedidoTest {
     void pagar_con_mastercard() {
         pagar(Tarjeta.MASTERCARD);
         assertTrue(
-                registro.seRegistro(
+                registro.verificar(
                         getMensajeDeRegistro(Tarjeta.MASTERCARD)
                 )
         );
@@ -55,7 +55,7 @@ public class PedidoTest {
     void pagar_con_comarca_plus() {
         pagar(Tarjeta.COMARCA_PLUS);
         assertTrue(
-                registro.seRegistro(
+                registro.verificar(
                         getMensajeDeRegistro(Tarjeta.COMARCA_PLUS)
                 )
         );
@@ -65,7 +65,7 @@ public class PedidoTest {
     void pagar_con_viedma() {
         pagar(Tarjeta.VIEDMA);
         assertTrue(
-                registro.seRegistro(
+                registro.verificar(
                         getMensajeDeRegistro(Tarjeta.VIEDMA)
                 )
         );
@@ -82,7 +82,7 @@ public class PedidoTest {
     private double obtenerTotalFinal(MedioDePago medioDePago) {
         return PROPINA_DEFAULT.aplicarPropina(
                 totalPlatos * (1 - medioDePago.getDescuentoPlatos()) +
-                     totalBebidas * (1 - medioDePago.getDescuentoBebidas())
+                        totalBebidas * (1 - medioDePago.getDescuentoBebidas())
         );
     }
 

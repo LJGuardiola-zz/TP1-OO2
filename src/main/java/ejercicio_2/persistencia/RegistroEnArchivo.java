@@ -14,10 +14,19 @@ public class RegistroEnArchivo implements Registro {
 
     @Override
     public void registrar(String mensaje) {
-        try (Writer writer = new FileWriter(file, true)) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(file, true))) {
             writer.write(mensaje);
         } catch (IOException e) {
             throw new RuntimeException("No se pudo registrar el mensaje.", e);
+        }
+    }
+
+    @Override
+    public boolean verificar(String message) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
+            return reader.lines().anyMatch(line -> line.equals(message));
+        } catch (IOException e) {
+            throw new RuntimeException("No se pudo leer el archivo de registro.", e);
         }
     }
 

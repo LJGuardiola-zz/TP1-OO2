@@ -11,7 +11,8 @@ public class RegistroEnTest implements Registro {
         almacen += message;
     }
 
-    public boolean seRegistro(String message) {
+    @Override
+    public boolean verificar(String message) {
         return almacen.contains(message);
     }
 

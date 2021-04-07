@@ -9,4 +9,9 @@ public class RegistroEnWebService implements Registro {
         System.out.println("Consumiendo web service");
     }
 
+    @Override
+    public boolean verificar(String message) {
+        return true;
+    }
+
 }
